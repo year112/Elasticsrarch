@@ -1,0 +1,253 @@
+[2017-02-21T11:13:53,178][INFO ][o.e.n.Node               ] [elk] initializing ...
+[2017-02-21T11:13:53,418][INFO ][o.e.e.NodeEnvironment    ] [elk] using [1] data paths, mounts [[/ (rootfs)]], net usable_space [5.8gb], net total_space [16.9gb], spins? [unknown], types [rootfs]
+[2017-02-21T11:13:53,418][INFO ][o.e.e.NodeEnvironment    ] [elk] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-02-21T11:13:53,419][INFO ][o.e.n.Node               ] [elk] node name [elk], node ID [S5sZoQtXQI68gDKJ1v-5yA]
+[2017-02-21T11:13:53,432][INFO ][o.e.n.Node               ] [elk] version[5.1.2], pid[35829], build[c8c4c16/2017-01-11T20:18:39.146Z], OS[Linux/3.10.0-514.2.2.el7.x86_64/amd64], JVM[Oracle Corporation/OpenJDK 64-Bit Server VM/1.8.0_111/25.111-b15]
+[2017-02-21T11:13:54,961][INFO ][o.e.p.PluginsService     ] [elk] loaded module [aggs-matrix-stats]
+[2017-02-21T11:13:54,961][INFO ][o.e.p.PluginsService     ] [elk] loaded module [ingest-common]
+[2017-02-21T11:13:54,961][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-expression]
+[2017-02-21T11:13:54,961][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-groovy]
+[2017-02-21T11:13:54,962][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-mustache]
+[2017-02-21T11:13:54,962][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-painless]
+[2017-02-21T11:13:54,962][INFO ][o.e.p.PluginsService     ] [elk] loaded module [percolator]
+[2017-02-21T11:13:54,962][INFO ][o.e.p.PluginsService     ] [elk] loaded module [reindex]
+[2017-02-21T11:13:54,962][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty3]
+[2017-02-21T11:13:54,962][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty4]
+[2017-02-21T11:13:54,963][INFO ][o.e.p.PluginsService     ] [elk] no plugins loaded
+[2017-02-21T11:13:56,478][WARN ][o.e.c.s.SettingsModule   ] [elk] 
+*************************************************************************************
+Found index level settings on node level configuration.
+
+Since elasticsearch 5.x index level settings can NOT be set on the nodes 
+configuration like the elasticsearch.yaml, in system properties or command line 
+arguments.In order to upgrade all indices the settings must be updated via the 
+/${index}/_settings API. Unless all settings are dynamic all indices must be closed 
+in order to apply the upgradeIndices created in the future should use index templates 
+to set default values. 
+
+Please ensure all required values are updated on all indices by executing: 
+
+curl -XPUT 'http://localhost:9200/_all/_settings?preserve_existing=true' -d '{
+  "index.number_of_replicas" : "1",
+  "index.number_of_shards" : "5"
+}'
+*************************************************************************************
+
+[2017-02-21T11:13:56,482][ERROR][o.e.b.Bootstrap          ] Exception
+java.lang.IllegalArgumentException: node settings must not contain any index level settings
+	at org.elasticsearch.common.settings.SettingsModule.<init>(SettingsModule.java:131) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.node.Node.<init>(Node.java:325) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.node.Node.<init>(Node.java:229) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap$6.<init>(Bootstrap.java:214) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:214) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:306) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:112) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.main(Command.java:88) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:89) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:82) [elasticsearch-5.1.2.jar:5.1.2]
+[2017-02-21T11:13:56,487][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [elk] uncaught exception in thread [main]
+org.elasticsearch.bootstrap.StartupException: java.lang.IllegalArgumentException: node settings must not contain any index level settings
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:125) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:112) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.main(Command.java:88) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:89) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:82) ~[elasticsearch-5.1.2.jar:5.1.2]
+Caused by: java.lang.IllegalArgumentException: node settings must not contain any index level settings
+	at org.elasticsearch.common.settings.SettingsModule.<init>(SettingsModule.java:131) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.node.Node.<init>(Node.java:325) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.node.Node.<init>(Node.java:229) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap$6.<init>(Bootstrap.java:214) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:214) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:306) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) ~[elasticsearch-5.1.2.jar:5.1.2]
+	... 6 more
+[2017-02-21T11:15:09,418][INFO ][o.e.n.Node               ] [elk] initializing ...
+[2017-02-21T11:15:09,501][INFO ][o.e.e.NodeEnvironment    ] [elk] using [1] data paths, mounts [[/ (rootfs)]], net usable_space [5.8gb], net total_space [16.9gb], spins? [unknown], types [rootfs]
+[2017-02-21T11:15:09,501][INFO ][o.e.e.NodeEnvironment    ] [elk] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-02-21T11:15:09,502][INFO ][o.e.n.Node               ] [elk] node name [elk], node ID [S5sZoQtXQI68gDKJ1v-5yA]
+[2017-02-21T11:15:09,504][INFO ][o.e.n.Node               ] [elk] version[5.1.2], pid[35899], build[c8c4c16/2017-01-11T20:18:39.146Z], OS[Linux/3.10.0-514.2.2.el7.x86_64/amd64], JVM[Oracle Corporation/OpenJDK 64-Bit Server VM/1.8.0_111/25.111-b15]
+[2017-02-21T11:15:10,201][INFO ][o.e.p.PluginsService     ] [elk] loaded module [aggs-matrix-stats]
+[2017-02-21T11:15:10,201][INFO ][o.e.p.PluginsService     ] [elk] loaded module [ingest-common]
+[2017-02-21T11:15:10,201][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-expression]
+[2017-02-21T11:15:10,201][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-groovy]
+[2017-02-21T11:15:10,201][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-mustache]
+[2017-02-21T11:15:10,201][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-painless]
+[2017-02-21T11:15:10,201][INFO ][o.e.p.PluginsService     ] [elk] loaded module [percolator]
+[2017-02-21T11:15:10,202][INFO ][o.e.p.PluginsService     ] [elk] loaded module [reindex]
+[2017-02-21T11:15:10,202][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty3]
+[2017-02-21T11:15:10,202][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty4]
+[2017-02-21T11:15:10,202][INFO ][o.e.p.PluginsService     ] [elk] no plugins loaded
+[2017-02-21T11:15:12,550][INFO ][o.e.n.Node               ] [elk] initialized
+[2017-02-21T11:15:12,551][INFO ][o.e.n.Node               ] [elk] starting ...
+[2017-02-21T11:15:12,791][INFO ][o.e.t.TransportService   ] [elk] publish_address {192.168.161.128:9300}, bound_addresses {192.168.161.128:9300}
+[2017-02-21T11:15:12,794][INFO ][o.e.b.BootstrapCheck     ] [elk] bound or publishing to a non-loopback or non-link-local address, enforcing bootstrap checks
+[2017-02-21T11:15:12,798][ERROR][o.e.b.Bootstrap          ] [elk] node validation exception
+bootstrap checks failed
+max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
+[2017-02-21T11:15:12,838][INFO ][o.e.n.Node               ] [elk] stopping ...
+[2017-02-21T11:15:12,920][INFO ][o.e.n.Node               ] [elk] stopped
+[2017-02-21T11:15:12,921][INFO ][o.e.n.Node               ] [elk] closing ...
+[2017-02-21T11:15:12,942][INFO ][o.e.n.Node               ] [elk] closed
+[2017-02-21T11:37:07,017][INFO ][o.e.n.Node               ] [elk] initializing ...
+[2017-02-21T11:37:07,118][INFO ][o.e.e.NodeEnvironment    ] [elk] using [1] data paths, mounts [[/ (rootfs)]], net usable_space [5.8gb], net total_space [16.9gb], spins? [unknown], types [rootfs]
+[2017-02-21T11:37:07,119][INFO ][o.e.e.NodeEnvironment    ] [elk] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-02-21T11:37:07,120][INFO ][o.e.n.Node               ] [elk] node name [elk], node ID [S5sZoQtXQI68gDKJ1v-5yA]
+[2017-02-21T11:37:07,123][INFO ][o.e.n.Node               ] [elk] version[5.1.2], pid[36545], build[c8c4c16/2017-01-11T20:18:39.146Z], OS[Linux/3.10.0-514.2.2.el7.x86_64/amd64], JVM[Oracle Corporation/OpenJDK 64-Bit Server VM/1.8.0_111/25.111-b15]
+[2017-02-21T11:37:07,889][INFO ][o.e.p.PluginsService     ] [elk] loaded module [aggs-matrix-stats]
+[2017-02-21T11:37:07,889][INFO ][o.e.p.PluginsService     ] [elk] loaded module [ingest-common]
+[2017-02-21T11:37:07,889][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-expression]
+[2017-02-21T11:37:07,890][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-groovy]
+[2017-02-21T11:37:07,890][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-mustache]
+[2017-02-21T11:37:07,890][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-painless]
+[2017-02-21T11:37:07,890][INFO ][o.e.p.PluginsService     ] [elk] loaded module [percolator]
+[2017-02-21T11:37:07,890][INFO ][o.e.p.PluginsService     ] [elk] loaded module [reindex]
+[2017-02-21T11:37:07,890][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty3]
+[2017-02-21T11:37:07,891][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty4]
+[2017-02-21T11:37:07,891][INFO ][o.e.p.PluginsService     ] [elk] no plugins loaded
+[2017-02-21T11:37:08,624][ERROR][o.e.b.Bootstrap          ] Exception
+java.lang.IllegalArgumentException: unknown setting [node.cluster] did you mean [node.master]?
+	at org.elasticsearch.common.settings.AbstractScopedSettings.validate(AbstractScopedSettings.java:278) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.common.settings.AbstractScopedSettings.validate(AbstractScopedSettings.java:246) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.common.settings.SettingsModule.<init>(SettingsModule.java:138) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.node.Node.<init>(Node.java:325) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.node.Node.<init>(Node.java:229) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap$6.<init>(Bootstrap.java:214) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:214) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:306) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:112) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.main(Command.java:88) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:89) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:82) [elasticsearch-5.1.2.jar:5.1.2]
+[2017-02-21T11:37:08,630][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [elk] uncaught exception in thread [main]
+org.elasticsearch.bootstrap.StartupException: java.lang.IllegalArgumentException: unknown setting [node.cluster] did you mean [node.master]?
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:125) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:112) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.main(Command.java:88) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:89) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:82) ~[elasticsearch-5.1.2.jar:5.1.2]
+Caused by: java.lang.IllegalArgumentException: unknown setting [node.cluster] did you mean [node.master]?
+	at org.elasticsearch.common.settings.AbstractScopedSettings.validate(AbstractScopedSettings.java:278) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.common.settings.AbstractScopedSettings.validate(AbstractScopedSettings.java:246) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.common.settings.SettingsModule.<init>(SettingsModule.java:138) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.node.Node.<init>(Node.java:325) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.node.Node.<init>(Node.java:229) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap$6.<init>(Bootstrap.java:214) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:214) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:306) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) ~[elasticsearch-5.1.2.jar:5.1.2]
+	... 6 more
+[2017-02-21T11:37:44,339][INFO ][o.e.n.Node               ] [elk] initializing ...
+[2017-02-21T11:37:44,411][INFO ][o.e.e.NodeEnvironment    ] [elk] using [1] data paths, mounts [[/ (rootfs)]], net usable_space [5.8gb], net total_space [16.9gb], spins? [unknown], types [rootfs]
+[2017-02-21T11:37:44,412][INFO ][o.e.e.NodeEnvironment    ] [elk] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-02-21T11:37:44,413][INFO ][o.e.n.Node               ] [elk] node name [elk], node ID [S5sZoQtXQI68gDKJ1v-5yA]
+[2017-02-21T11:37:44,416][INFO ][o.e.n.Node               ] [elk] version[5.1.2], pid[36614], build[c8c4c16/2017-01-11T20:18:39.146Z], OS[Linux/3.10.0-514.2.2.el7.x86_64/amd64], JVM[Oracle Corporation/OpenJDK 64-Bit Server VM/1.8.0_111/25.111-b15]
+[2017-02-21T11:37:45,109][INFO ][o.e.p.PluginsService     ] [elk] loaded module [aggs-matrix-stats]
+[2017-02-21T11:37:45,109][INFO ][o.e.p.PluginsService     ] [elk] loaded module [ingest-common]
+[2017-02-21T11:37:45,109][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-expression]
+[2017-02-21T11:37:45,109][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-groovy]
+[2017-02-21T11:37:45,109][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-mustache]
+[2017-02-21T11:37:45,109][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-painless]
+[2017-02-21T11:37:45,109][INFO ][o.e.p.PluginsService     ] [elk] loaded module [percolator]
+[2017-02-21T11:37:45,110][INFO ][o.e.p.PluginsService     ] [elk] loaded module [reindex]
+[2017-02-21T11:37:45,110][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty3]
+[2017-02-21T11:37:45,110][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty4]
+[2017-02-21T11:37:45,111][INFO ][o.e.p.PluginsService     ] [elk] no plugins loaded
+[2017-02-21T11:37:48,058][INFO ][o.e.n.Node               ] [elk] initialized
+[2017-02-21T11:37:48,058][INFO ][o.e.n.Node               ] [elk] starting ...
+[2017-02-21T11:37:48,233][INFO ][o.e.t.TransportService   ] [elk] publish_address {192.168.161.128:9300}, bound_addresses {192.168.161.128:9300}
+[2017-02-21T11:37:48,237][INFO ][o.e.b.BootstrapCheck     ] [elk] bound or publishing to a non-loopback or non-link-local address, enforcing bootstrap checks
+[2017-02-21T11:37:48,240][ERROR][o.e.b.Bootstrap          ] [elk] node validation exception
+bootstrap checks failed
+max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
+[2017-02-21T11:37:48,278][INFO ][o.e.n.Node               ] [elk] stopping ...
+[2017-02-21T11:37:48,352][INFO ][o.e.n.Node               ] [elk] stopped
+[2017-02-21T11:37:48,352][INFO ][o.e.n.Node               ] [elk] closing ...
+[2017-02-21T11:37:48,361][INFO ][o.e.n.Node               ] [elk] closed
+[2017-02-21T11:41:00,954][ERROR][o.e.b.Bootstrap          ] Exception
+java.lang.RuntimeException: can not run elasticsearch as root
+	at org.elasticsearch.bootstrap.Bootstrap.initializeNatives(Bootstrap.java:100) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:176) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:306) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:112) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.main(Command.java:88) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:89) [elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:82) [elasticsearch-5.1.2.jar:5.1.2]
+[2017-02-21T11:41:00,967][WARN ][o.e.b.ElasticsearchUncaughtExceptionHandler] [elk] uncaught exception in thread [main]
+org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:125) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.execute(Elasticsearch.java:112) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.SettingCommand.execute(SettingCommand.java:54) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.mainWithoutErrorHandling(Command.java:122) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.cli.Command.main(Command.java:88) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:89) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.main(Elasticsearch.java:82) ~[elasticsearch-5.1.2.jar:5.1.2]
+Caused by: java.lang.RuntimeException: can not run elasticsearch as root
+	at org.elasticsearch.bootstrap.Bootstrap.initializeNatives(Bootstrap.java:100) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.setup(Bootstrap.java:176) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Bootstrap.init(Bootstrap.java:306) ~[elasticsearch-5.1.2.jar:5.1.2]
+	at org.elasticsearch.bootstrap.Elasticsearch.init(Elasticsearch.java:121) ~[elasticsearch-5.1.2.jar:5.1.2]
+	... 6 more
+[2017-02-21T11:42:35,110][INFO ][o.e.n.Node               ] [elk] initializing ...
+[2017-02-21T11:42:35,178][INFO ][o.e.e.NodeEnvironment    ] [elk] using [1] data paths, mounts [[/ (rootfs)]], net usable_space [5.8gb], net total_space [16.9gb], spins? [unknown], types [rootfs]
+[2017-02-21T11:42:35,179][INFO ][o.e.e.NodeEnvironment    ] [elk] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-02-21T11:42:35,180][INFO ][o.e.n.Node               ] [elk] node name [elk], node ID [S5sZoQtXQI68gDKJ1v-5yA]
+[2017-02-21T11:42:35,184][INFO ][o.e.n.Node               ] [elk] version[5.1.2], pid[37003], build[c8c4c16/2017-01-11T20:18:39.146Z], OS[Linux/3.10.0-514.2.2.el7.x86_64/amd64], JVM[Oracle Corporation/OpenJDK 64-Bit Server VM/1.8.0_111/25.111-b15]
+[2017-02-21T11:42:35,874][INFO ][o.e.p.PluginsService     ] [elk] loaded module [aggs-matrix-stats]
+[2017-02-21T11:42:35,874][INFO ][o.e.p.PluginsService     ] [elk] loaded module [ingest-common]
+[2017-02-21T11:42:35,874][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-expression]
+[2017-02-21T11:42:35,874][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-groovy]
+[2017-02-21T11:42:35,874][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-mustache]
+[2017-02-21T11:42:35,874][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-painless]
+[2017-02-21T11:42:35,875][INFO ][o.e.p.PluginsService     ] [elk] loaded module [percolator]
+[2017-02-21T11:42:35,875][INFO ][o.e.p.PluginsService     ] [elk] loaded module [reindex]
+[2017-02-21T11:42:35,875][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty3]
+[2017-02-21T11:42:35,875][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty4]
+[2017-02-21T11:42:35,876][INFO ][o.e.p.PluginsService     ] [elk] no plugins loaded
+[2017-02-21T11:42:37,832][INFO ][o.e.n.Node               ] [elk] initialized
+[2017-02-21T11:42:37,833][INFO ][o.e.n.Node               ] [elk] starting ...
+[2017-02-21T11:42:37,969][INFO ][o.e.t.TransportService   ] [elk] publish_address {192.168.161.128:9300}, bound_addresses {192.168.161.128:9300}
+[2017-02-21T11:42:37,972][INFO ][o.e.b.BootstrapCheck     ] [elk] bound or publishing to a non-loopback or non-link-local address, enforcing bootstrap checks
+[2017-02-21T11:42:37,976][ERROR][o.e.b.Bootstrap          ] [elk] node validation exception
+bootstrap checks failed
+max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]
+[2017-02-21T11:42:38,013][INFO ][o.e.n.Node               ] [elk] stopping ...
+[2017-02-21T11:42:38,049][INFO ][o.e.n.Node               ] [elk] stopped
+[2017-02-21T11:42:38,049][INFO ][o.e.n.Node               ] [elk] closing ...
+[2017-02-21T11:42:38,063][INFO ][o.e.n.Node               ] [elk] closed
+[2017-02-21T11:46:12,965][INFO ][o.e.n.Node               ] [elk] initializing ...
+[2017-02-21T11:46:13,040][INFO ][o.e.e.NodeEnvironment    ] [elk] using [1] data paths, mounts [[/ (rootfs)]], net usable_space [5.8gb], net total_space [16.9gb], spins? [unknown], types [rootfs]
+[2017-02-21T11:46:13,040][INFO ][o.e.e.NodeEnvironment    ] [elk] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-02-21T11:46:13,042][INFO ][o.e.n.Node               ] [elk] node name [elk], node ID [S5sZoQtXQI68gDKJ1v-5yA]
+[2017-02-21T11:46:13,044][INFO ][o.e.n.Node               ] [elk] version[5.1.2], pid[37388], build[c8c4c16/2017-01-11T20:18:39.146Z], OS[Linux/3.10.0-514.2.2.el7.x86_64/amd64], JVM[Oracle Corporation/OpenJDK 64-Bit Server VM/1.8.0_111/25.111-b15]
+[2017-02-21T11:46:13,754][INFO ][o.e.p.PluginsService     ] [elk] loaded module [aggs-matrix-stats]
+[2017-02-21T11:46:13,754][INFO ][o.e.p.PluginsService     ] [elk] loaded module [ingest-common]
+[2017-02-21T11:46:13,754][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-expression]
+[2017-02-21T11:46:13,754][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-groovy]
+[2017-02-21T11:46:13,754][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-mustache]
+[2017-02-21T11:46:13,754][INFO ][o.e.p.PluginsService     ] [elk] loaded module [lang-painless]
+[2017-02-21T11:46:13,755][INFO ][o.e.p.PluginsService     ] [elk] loaded module [percolator]
+[2017-02-21T11:46:13,755][INFO ][o.e.p.PluginsService     ] [elk] loaded module [reindex]
+[2017-02-21T11:46:13,755][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty3]
+[2017-02-21T11:46:13,755][INFO ][o.e.p.PluginsService     ] [elk] loaded module [transport-netty4]
+[2017-02-21T11:46:13,756][INFO ][o.e.p.PluginsService     ] [elk] no plugins loaded
+[2017-02-21T11:46:15,676][INFO ][o.e.n.Node               ] [elk] initialized
+[2017-02-21T11:46:15,677][INFO ][o.e.n.Node               ] [elk] starting ...
+[2017-02-21T11:46:15,819][INFO ][o.e.t.TransportService   ] [elk] publish_address {192.168.161.128:9300}, bound_addresses {192.168.161.128:9300}
+[2017-02-21T11:46:15,823][INFO ][o.e.b.BootstrapCheck     ] [elk] bound or publishing to a non-loopback or non-link-local address, enforcing bootstrap checks
+[2017-02-21T11:46:18,952][INFO ][o.e.c.s.ClusterService   ] [elk] new_master {elk}{S5sZoQtXQI68gDKJ1v-5yA}{qMzKRozoQyWRs2AOZCZOkQ}{192.168.161.128}{192.168.161.128:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2017-02-21T11:46:19,041][INFO ][o.e.h.HttpServer         ] [elk] publish_address {192.168.161.128:9200}, bound_addresses {192.168.161.128:9200}
+[2017-02-21T11:46:19,042][INFO ][o.e.n.Node               ] [elk] started
+[2017-02-21T11:46:19,055][INFO ][o.e.g.GatewayService     ] [elk] recovered [0] indices into cluster_state
