@@ -25,7 +25,7 @@ node.name: elk
 #指定该节点是否存储索引数据，默认为true
 node.data: true
 
-discovery.zen.ping.unicast.hosts: ["192.168.161.128"]
+discovery.zen.ping.unicast.hosts: ["192.168.161.129"]
 
 path.logs: /home/elk/soft/ELK/elasticsearch-5.1.2/logs
 
@@ -51,10 +51,10 @@ node.master: true
 #path.plugins: /path/to/plugins  
 
 #设置绑定的ip地址，可以是ipv4或ipv6的，默认为0.0.0.0
-network.bind_host: 192.168.161.128
+network.bind_host: 192.168.161.129
 
 #这个参数是用来同时设置bind_host和publish_host上面两个参数
-network.host: 192.168.161.128
+network.host: 192.168.161.129
 
 #设置节点间交互的tcp端口，默认是9300。
 transport.tcp.port: 9300
